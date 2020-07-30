@@ -7,10 +7,15 @@
         $(document).ready(function () {
             $("#btnTry").click(function () {
                 // 在這裏寫程式
-                
+                var s = $("#aTextField").val()
+                         +"<br>Selected:<br>";
+                         
+                $("#report").append(s);
+                $("input[name='radioGroup']").eq(0).prop("checked","checked");
+              // var info = $("#aTexField").val();
+              // alert(info);
+              // $("#report").append(info);
 
-
-                
 
                 
                 
@@ -28,7 +33,7 @@
 
 <form action="" method="put" onsubmit="return false;">
   <div>
-    <label>Text:</label> <input type="text" id="aTextField" name="someTextField"/>
+    <label>Text:</label> <input type="text" id="aTextField" name="someTextField"value="type here"/>
   </div>
   <div>
     <label>Radio group:</label>

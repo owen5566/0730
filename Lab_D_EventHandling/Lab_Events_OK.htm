@@ -4,27 +4,43 @@
     <meta charset="utf-8" />
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript">
-
+        var mouseEvent = true;
         function console(obj)
         {
             $("#report").append(obj + "<br>");
         }
-
+        function picChange(){//重新打開mouseEnter事件
+            if(!mouseEvent){
+            $("#panda").on( {
+                "mouseover":
+                function () { 
+                    $("#panda").attr("src", "panda2.jpg");  
+                    console("mouse enter image");
+                },
+                "mouseout":
+                function () { 
+                    $("#panda").attr("src", "panda1.jpg");  
+                    console("mouse leave image");
+                    }
+                });
+            }
+        }
         $(document).ready(function () {
             // 在這裏寫程式
             $("#btnTry").click( 
                 function () { 
-                    console("btnTry clicked");  
+                    console("btnTry clicked, mouseEventOn");
+                    picChange();
                 }  
             );
 
             $("#report").on(
                 "click",
                 function () { 
-                    $("#report").html("Report:<br>");  
+                    $("#report").html("Report:<br>");
+                      
                 }  
             );
-
 
             $("#panda").on( {
                 "mouseover":
@@ -39,10 +55,11 @@
                 }
             });
 
-            $("#btnOff").click( 
+            $("#btnOff").on("click", 
                 function () { 
                     $("#panda").off("mouseover");
                     $("#panda").off("mouseout");
+                    mouseEvent =false;
                 }  
             );
 
