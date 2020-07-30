@@ -16,7 +16,7 @@
 
 <body>
     <div class="container">
-        <h2>AJAX Lab</h2>
+        <h2>AJAX Lab<script>date();</script></h2>
         <ul class="nav nav-tabs">
             <li class="active"><a href="#conceptTab">Concept</a></li>
             <li><a href="#getTab">GET</a></li>
@@ -126,13 +126,16 @@
 
 
             $("#getButton").on("click", function() {
-                var s = $("#nameTextBox").val();
+                var who = $("#nameTextBox").val();
+                 var url = "/hello/"+who;
+                 $.get(url, function(dataFromServer){
+                     $("#reportSpan").text(dataFromServer);
+                })
+                
 
 
 
-
-
-                $("#reportSpan").text(s);
+                //$("#reportSpan").text(s);
             })
 
 
@@ -142,11 +145,18 @@
                     firstName: $("#firstNameTextBox").val(),
                     lastName: $("#lastNameTextBox").val()
                 }
+                // $.post("/test",dataToServer,function(e){
+                //     $("#resultSpan").text(JSON.stringify(dataToServer));
+                // })
+                $.ajax({
+                    type: "post",//post get put delete
+                    url: "/test",
+                    contentType:"application/json",
+                    data: JSON.stringify(dataToServer)
+                }).then(function(dataFROMServer){
+                    $("#resultSpan").text(dataFROMServer);
+                })
 
-
-
-
-                $("#resultSpan").text(JSON.stringify(dataToServer));
             })
 
 
